@@ -1,0 +1,79 @@
+1-tarayýcýya ziraatbank.com.tr yazdýðýmýzda ne oluyor? Anasayfa'nýn tarayýcýda nasýl görüntülendiðine kadar olan süreci adýmlarýyla açýklayýn
+ -Tarayici, ziraatbank.com.tr alan adinin IP adresini DNS üzerinden çözer
+ -Alan adi karsiligi gelen IP adresine istek gönderilir
+ -Sunucuyla 3-way handshake yapilarak TCP baglantisi kurulur
+ -Tarayici TLS ile sifreli bir GET istegi yollar
+ -Sunucu HTML/CSS/JS içerigi döner
+ -Tarayici sayfa yapisini isler ve anasayfa görünür 
+
+2-Tarayýcýlar nasýl çalýþýr?
+  -Kullanicidan URL alir
+  -DNS ile IP yi bulur
+  -Sunucuyla TCP baglantisi kurar
+  -HTTP/HTTPS istegi gönderir
+  -Gelen HTML/CSS/JS yi isler 
+  -Sayfayi kullaniciya görsel olarak sunar
+
+
+3-DNS nasýl çalýþýr?
+ -Tarayici, DNS sunucusuna ziraatbank.com.tr IP si nedir diye sorar
+ -Eger DNS cache te yoksa,
+ Root DNS ? .tr ? com.tr ? ziraatbank.com.tr sirasiyla sorgular
+ -Sonuç IP adresi döner
+ -Bu IP ye baglanti kurulur
+
+
+4-Ýnternet üzerinde baþka birisinin "Gerçek ÝP adresini" spoof edersem ona giden paketleri kendime yönlendirebilir miyim?
+ -Hayir, IP spoofing ile giden paketin kimligini degistirebilirsin, ama gelen cevaplar spoof edilen IP ye gider, sana gelmez.
+
+5-Bi yerel aðda baþka birisisin MAC adresini kopyalarsam ne olur?
+ -Agda ayni MAC adresine sahip iki cihaz çakisir.
+ -Switch hangisine veri gönderecegini bilemez baglantilar kopabilir.
+ -Her iki cihaz da ag disi kalabilir
+
+6-Gatewayden gelen broadcast adresine "sürekli MAC adresimi deðiþtirip" cevap verirsem ne olur?
+ -ARP spoofing gibi çalisir
+ -Ag trafigi üzerine çekilebilir
+ -Ag karisikligi, ag çökmeleri güvenlik sistemleri tarafindan banlanma gibi sonuçlara yl açar
+
+7-Bir cihazla TCP baðlantýsý kurarken "sadece SYN flag'li paketler yollayýp dönen paketlere cevap vermezsem" ne olur?
+ -SYN flood saldirisir. Sunucu baglantiyi tamamlamak için kaynak ayirir. Cevap gelmeyince kaynak tüketilir, sistem yavaslar ve çöker
+ 
+
+8-Okuldaki sýnýflarda ethernet kablosunu kendi bilgisayarýnýza taktýðýnýzda neden internete çýkamazsýnýz? Çýkabilmek için ne yapabilirsiniz? Nasýl bir koruma yöntemi kullanýlmýþ olabilir?
+ -Okul agi genellikle kisitlanmis ve yetkilendirilmis cihazlara özeldir.Switch, izinli MAC adreslerine göre baglanti verir.DHCP sunucusu sadece tanimli cihazlara IP verir.
+ -Internete çikabilmek için MAC adres spoofing ile izinli bir cihazin MAC'ini taklit etmek ya da eger sistem açik birakilmissa Statik IP ve el ile ayar yapmak.
+ -Koruma yöntemleri: MAC filtreleme, DHCP kontrolü, VLAN ayrimi, Switch port güvenligi (belirli MAC’ten fazlasina izin vermez) 
+
+
+
+
+
+
+
+9-Https nedir?
+ -HTTP'nin sifreli halidir. SSL/TLS kullanilir. Tarayici ve sunucu arasinda veriler gizli, bütünlük korumali ve dogrulanmis sekilde iletilir
+
+ 
+10-Https trafiðinde SSL sertifikasý nedir ve þifreleme nasýl yapýlýr?
+ -HTTPS trafiginde SSL sertifikasi, web sitesinin kimligini dogrulayan ve sifreli iletisim kurulmasini saglayan dijital belgedir. Sertifikada genellikle, alan adi, kurum bilgisi, sertifika yetkilisi (CA), açik anahtar bulunur.
+ 
+ -Sunucu SSL sertifikasini tarayiciya gönderir (Içinde açik anahtar var.). Tarayici bu anahtarla sifrelenmis bir oturum anahtari (symmetric key) yollar. Artik hem sunucu hem tarayici bu anahtarla sifreli veri alisverisi yapar.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
